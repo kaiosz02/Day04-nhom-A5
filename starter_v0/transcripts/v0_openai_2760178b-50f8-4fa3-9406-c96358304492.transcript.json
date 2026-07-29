@@ -1,0 +1,521 @@
+{
+  "transcript_id": "v0_openai_2760178b-50f8-4fa3-9406-c96358304492",
+  "version": "v0",
+  "artifact_version": "v0+p725cc65a35b9+t13bb527c3dbb",
+  "prompt_hash": "725cc65a35b9ea57071bdf3c50ed2c74edb2b28b7039f63883f0c024c6760ae1",
+  "tools_hash": "13bb527c3dbba3e04ffe716b93e2258abbe5fba9bac95613c98b631b4488a12b",
+  "provider": "openai",
+  "model": null,
+  "created_at": "2026-07-29T17:18:30",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:18:30",
+      "user": "hello",
+      "status": "answered",
+      "assistant_text": "Hello! How can I assist you today with technology news or information?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Hello! How can I assist you today with technology news or information?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T17:18:30"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-07-29T17:18:42",
+      "user": "tin tức mới về AI",
+      "status": "answered",
+      "assistant_text": "Hiện tại, tôi gặp sự cố khi tìm kiếm tin tức mới về AI. Bạn có muốn tôi thử lại hoặc tìm kiếm thông tin khác không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "AI",
+                "topic": "news"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "AI",
+                "topic": "news"
+              },
+              "result": {
+                "tool": "web_search",
+                "error": "RuntimeError",
+                "message": "Missing TAVILY_API_KEY env var"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Hiện tại, tôi gặp sự cố khi tìm kiếm tin tức mới về AI. Bạn có muốn tôi thử lại hoặc tìm kiếm thông tin khác không?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "topic": "news"
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:18:42"
+    },
+    {
+      "turn_index": 3,
+      "started_at": "2026-07-29T17:21:41",
+      "user": "tìm tài liệu về llm",
+      "status": "answered",
+      "assistant_text": "Dưới đây là một số tài liệu nghiên cứu mới về các mô hình ngôn ngữ lớn (LLM):\n\n1. **[Learning From Failure: Integrating Negative Examples when Fine-tuning Large Language Models as Agents](http://arxiv.org/abs/2402.11651v2)**\n   - **Tác giả:** Renxi Wang, Haonan Li, Xudong Han, Yixuan Zhang, Timothy Baldwin\n   - **Tóm tắt:** Nghiên cứu này chỉ ra rằng các mô hình ngôn ngữ lớn (LLMs) có thể học từ các ví dụ tiêu cực trong quá trình tinh chỉnh, giúp cải thiện hiệu suất trong các tác vụ như lý luận toán học và trả lời câu hỏi đa bước.\n   - **Ngày xuất bản:** 18 tháng 2, 2024\n   - **[PDF](https://arxiv.org/pdf/2402.11651v2)**\n\n2. **[Demystifying Instruction Mixing for Fine-tuning Large Language Models](http://arxiv.org/abs/2312.10793v3)**\n   - **Tác giả:** Renxi Wang, Haonan Li, Minghao Wu, Yuxia Wang, Xudong Han, Chiyu Zhang, Timothy Baldwin\n   - **Tóm tắt:** Nghiên cứu này phân tích cách tối ưu hóa việc trộn các tập dữ liệu hướng dẫn cho việc tinh chỉnh LLM, cung cấp cái nhìn sâu sắc về các loại hướng dẫn khác nhau và ảnh hưởng của chúng đến hiệu suất.\n   - **Ngày xuất bản:** 17 tháng 12, 2023\n   - **[PDF](https://arxiv.org/pdf/2312.10793v3)**\n\n3. **[WizardLM: Empowering large pre-trained language models to follow complex instructions](http://arxiv.org/abs/2304.12244v3)**\n   - **Tác giả:** Can Xu, Qingfeng Sun, Kai Zheng, Xiubo Geng, Pu Zhao, Jiazhan Feng, Chongyang Tao, Qingwei Lin, Daxin Jiang\n   - **Tóm tắt:** Nghiên cứu này giới thiệu một phương pháp mới để tạo ra dữ liệu hướng dẫn phức tạp cho LLM bằng cách sử dụng các mô hình ngôn ngữ thay vì con người, giúp cải thiện hiệu suất của mô hình.\n   - **Ngày xuất bản:** 24 tháng 4, 2023\n   - **[PDF](https://arxiv.org/pdf/2304.12244v3)**\n\n4. **[PB-LLM: Partially Binarized Large Language Models](http://arxiv.org/abs/2310.00034v2)**\n   - **Tác giả:** Yuzhang Shang, Zhihang Yuan, Qiang Wu, Zhen Dong\n   - **Tóm tắt:** Nghiên cứu này khám phá việc nén mô hình ngôn ngữ lớn thông qua phương pháp nhị phân một phần, giúp duy trì khả năng lý luận trong khi giảm kích thước mô hình.\n   - **Ngày xuất bản:** 29 tháng 9, 2023\n   - **[PDF](https://arxiv.org/pdf/2310.00034v2)**\n\n5. **[How do language models learn facts? Dynamics, curricula and hallucinations](http://arxiv.org/abs/2503.21676v2)**\n   - **Tác giả:** Nicolas Zucchet, Jörg Bornschein, Stephanie Chan, Andrew Lampinen, Razvan Pascanu, Soham De\n   - **Tóm tắt:** Nghiên cứu này điều tra động lực học học tập của các mô hình ngôn ngữ, chỉ ra rằng chúng học theo ba giai đoạn và sự phân phối dữ liệu có ảnh hưởng lớn đến quá trình học.\n   - **Ngày xuất bản:** 27 tháng 3, 2025\n   - **[PDF](https://arxiv.org/pdf/2503.21676v2)**\n\nNếu bạn cần thêm thông tin chi tiết về bất kỳ tài liệu nào, hãy cho tôi biết!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "papers",
+              "args": {
+                "query": "large language model",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "papers",
+              "args": {
+                "query": "large language model",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "arxiv_search",
+                "query": "large language model",
+                "api_query": "all:large AND all:language AND all:model",
+                "total_results": 96768,
+                "items": [
+                  {
+                    "arxiv_id": "2402.11651v2",
+                    "title": "Learning From Failure: Integrating Negative Examples when Fine-tuning Large Language Models as Agents",
+                    "summary": "Large language models (LLMs) have achieved success in acting as agents, which interact with environments through tools such as search engines. However, LLMs are optimized for language generation instead of tool use during training or alignment, limiting their effectiveness as agents. To resolve this problem, previous work has first collected interaction trajectories between LLMs and environments, using only trajectories that successfully finished the task to fine-tune smaller models, making fine-tuning data scarce and acquiring it both difficult and costly. Discarding failed trajectories also leads to significant wastage of data and resources and limits the possible optimization paths during fine-tuning. In this paper, we argue that unsuccessful trajectories offer valuable insights, and LLMs can learn from these trajectories through appropriate quality control and fine-tuning strategies. By simply adding a prefix or suffix that tells the model whether to generate a successful trajectory during training, we improve model performance by a large margin on mathematical reasoning, multi-hop question answering, and strategic question answering tasks. We further analyze the inference results and find that our method provides a better trade-off between valuable information and errors in unsuccessful trajectories. To our knowledge, we are the first to demonstrate the value of negative trajectories and their application in agent-tunning scenarios. Our findings offer guidance for developing better agent-tuning methods and low-resource data usage techniques.",
+                    "authors": [
+                      "Renxi Wang",
+                      "Haonan Li",
+                      "Xudong Han",
+                      "Yixuan Zhang",
+                      "Timothy Baldwin"
+                    ],
+                    "published": "2024-02-18T17:10:07Z",
+                    "updated": "2024-04-16T11:41:13Z",
+                    "url": "http://arxiv.org/abs/2402.11651v2",
+                    "pdf_url": "https://arxiv.org/pdf/2402.11651v2",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CL",
+                    "categories": [
+                      "cs.CL"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2312.10793v3",
+                    "title": "Demystifying Instruction Mixing for Fine-tuning Large Language Models",
+                    "summary": "Instruction tuning significantly enhances the performance of large language models (LLMs) across various tasks. However, the procedure to optimizing the mixing of instruction datasets for LLM fine-tuning is still poorly understood. This study categorizes instructions into three primary types: NLP downstream tasks, coding, and general chat. We explore the effects of instruction tuning on different combinations of datasets on LLM performance, and find that certain instruction types are more advantageous for specific applications but can negatively impact other areas. This work provides insights into instruction mixtures, laying the foundations for future research.",
+                    "authors": [
+                      "Renxi Wang",
+                      "Haonan Li",
+                      "Minghao Wu",
+                      "Yuxia Wang",
+                      "Xudong Han",
+                      "Chiyu Zhang",
+                      "Timothy Baldwin"
+                    ],
+                    "published": "2023-12-17T18:44:26Z",
+                    "updated": "2024-02-18T17:13:36Z",
+                    "url": "http://arxiv.org/abs/2312.10793v3",
+                    "pdf_url": "https://arxiv.org/pdf/2312.10793v3",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CL",
+                    "categories": [
+                      "cs.CL",
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2304.12244v3",
+                    "title": "WizardLM: Empowering large pre-trained language models to follow complex instructions",
+                    "summary": "Training large language models (LLMs) with open-domain instruction following data brings colossal success. However, manually creating such instruction data is very time-consuming and labor-intensive. Moreover, humans may struggle to produce high-complexity instructions. In this paper, we show an avenue for creating large amounts of instruction data with varying levels of complexity using LLM instead of humans. Starting with an initial set of instructions, we use our proposed Evol-Instruct to rewrite them step by step into more complex instructions. Then, we mix all generated instruction data to fine-tune LLaMA. We call the resulting model WizardLM. Human evaluations on a complexity-balanced test bed and Vicuna's testset show that instructions from Evol-Instruct are superior to human-created ones. By analyzing the human evaluation results of the high complexity part, we demonstrate that outputs from our WizardLM are preferred to outputs from OpenAI ChatGPT. In GPT-4 automatic evaluation, WizardLM achieves more than 90\\% capacity of ChatGPT on 17 out of 29 skills. Even though WizardLM still lags behind ChatGPT in some aspects, our findings suggest that fine-tuning with AI-evolved instructions is a promising direction for enhancing LLMs. Our code and data are public at https://github.com/nlpxucan/WizardLM",
+                    "authors": [
+                      "Can Xu",
+                      "Qingfeng Sun",
+                      "Kai Zheng",
+                      "Xiubo Geng",
+                      "Pu Zhao",
+                      "Jiazhan Feng",
+                      "Chongyang Tao",
+                      "Qingwei Lin",
+                      "Daxin Jiang"
+                    ],
+                    "published": "2023-04-24T16:31:06Z",
+                    "updated": "2025-05-27T06:49:09Z",
+                    "url": "http://arxiv.org/abs/2304.12244v3",
+                    "pdf_url": "https://arxiv.org/pdf/2304.12244v3",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CL",
+                    "categories": [
+                      "cs.CL",
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2310.00034v2",
+                    "title": "PB-LLM: Partially Binarized Large Language Models",
+                    "summary": "This paper explores network binarization, a radical form of quantization, compressing model weights to a single bit, specifically for Large Language Models (LLMs) compression. Due to previous binarization methods collapsing LLMs, we propose a novel approach, Partially-Binarized LLM (PB-LLM), which can achieve extreme low-bit quantization while maintaining the linguistic reasoning capacity of quantized LLMs. Specifically, our exploration first uncovers the ineffectiveness of naive applications of existing binarization algorithms and highlights the imperative role of salient weights in achieving low-bit quantization. Thus, PB-LLM filters a small ratio of salient weights during binarization, allocating them to higher-bit storage, i.e., partially-binarization. PB-LLM is extended to recover the capacities of quantized LMMs, by analyzing from the perspective of post-training quantization (PTQ) and quantization-aware training (QAT). Under PTQ, combining the concepts from GPTQ, we reconstruct the binarized weight matrix guided by the Hessian matrix and successfully recover the reasoning capacity of PB-LLM in low-bit. Under QAT, we freeze the salient weights during training, explore the derivation of optimal scaling factors crucial for minimizing the quantization error, and propose a scaling mechanism based on this derived scaling strategy for residual binarized weights. Those explorations and the developed methodologies significantly contribute to rejuvenating the performance of low-bit quantized LLMs and present substantial advancements in the field of network binarization for LLMs.The code is available at https://github.com/hahnyuan/BinaryLLM.",
+                    "authors": [
+                      "Yuzhang Shang",
+                      "Zhihang Yuan",
+                      "Qiang Wu",
+                      "Zhen Dong"
+                    ],
+                    "published": "2023-09-29T14:35:27Z",
+                    "updated": "2023-11-07T20:41:22Z",
+                    "url": "http://arxiv.org/abs/2310.00034v2",
+                    "pdf_url": "https://arxiv.org/pdf/2310.00034v2",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.LG",
+                    "categories": [
+                      "cs.LG",
+                      "cs.AI",
+                      "cs.CL"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2503.21676v2",
+                    "title": "How do language models learn facts? Dynamics, curricula and hallucinations",
+                    "summary": "Large language models accumulate vast knowledge during pre-training, yet the dynamics governing this acquisition remain poorly understood. This work investigates the learning dynamics of language models on a synthetic factual recall task, uncovering three key findings: First, language models learn in three phases, exhibiting a performance plateau before acquiring precise factual knowledge. Mechanistically, this plateau coincides with the formation of attention-based circuits that support recall. Second, the training data distribution significantly impacts learning dynamics, as imbalanced distributions lead to shorter plateaus. Finally, hallucinations emerge simultaneously with knowledge, and integrating new knowledge into the model through fine-tuning is challenging, as it quickly corrupts its existing parametric memories. Our results emphasize the importance of data distribution in knowledge acquisition and suggest novel data scheduling strategies to accelerate neural network training.",
+                    "authors": [
+                      "Nicolas Zucchet",
+                      "Jörg Bornschein",
+                      "Stephanie Chan",
+                      "Andrew Lampinen",
+                      "Razvan Pascanu",
+                      "Soham De"
+                    ],
+                    "published": "2025-03-27T16:43:45Z",
+                    "updated": "2025-07-24T14:04:20Z",
+                    "url": "http://arxiv.org/abs/2503.21676v2",
+                    "pdf_url": "https://arxiv.org/pdf/2503.21676v2",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CL",
+                    "categories": [
+                      "cs.CL",
+                      "cs.LG"
+                    ]
+                  }
+                ],
+                "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Dưới đây là một số tài liệu nghiên cứu mới về các mô hình ngôn ngữ lớn (LLM):\n\n1. **[Learning From Failure: Integrating Negative Examples when Fine-tuning Large Language Models as Agents](http://arxiv.org/abs/2402.11651v2)**\n   - **Tác giả:** Renxi Wang, Haonan Li, Xudong Han, Yixuan Zhang, Timothy Baldwin\n   - **Tóm tắt:** Nghiên cứu này chỉ ra rằng các mô hình ngôn ngữ lớn (LLMs) có thể học từ các ví dụ tiêu cực trong quá trình tinh chỉnh, giúp cải thiện hiệu suất trong các tác vụ như lý luận toán học và trả lời câu hỏi đa bước.\n   - **Ngày xuất bản:** 18 tháng 2, 2024\n   - **[PDF](https://arxiv.org/pdf/2402.11651v2)**\n\n2. **[Demystifying Instruction Mixing for Fine-tuning Large Language Models](http://arxiv.org/abs/2312.10793v3)**\n   - **Tác giả:** Renxi Wang, Haonan Li, Minghao Wu, Yuxia Wang, Xudong Han, Chiyu Zhang, Timothy Baldwin\n   - **Tóm tắt:** Nghiên cứu này phân tích cách tối ưu hóa việc trộn các tập dữ liệu hướng dẫn cho việc tinh chỉnh LLM, cung cấp cái nhìn sâu sắc về các loại hướng dẫn khác nhau và ảnh hưởng của chúng đến hiệu suất.\n   - **Ngày xuất bản:** 17 tháng 12, 2023\n   - **[PDF](https://arxiv.org/pdf/2312.10793v3)**\n\n3. **[WizardLM: Empowering large pre-trained language models to follow complex instructions](http://arxiv.org/abs/2304.12244v3)**\n   - **Tác giả:** Can Xu, Qingfeng Sun, Kai Zheng, Xiubo Geng, Pu Zhao, Jiazhan Feng, Chongyang Tao, Qingwei Lin, Daxin Jiang\n   - **Tóm tắt:** Nghiên cứu này giới thiệu một phương pháp mới để tạo ra dữ liệu hướng dẫn phức tạp cho LLM bằng cách sử dụng các mô hình ngôn ngữ thay vì con người, giúp cải thiện hiệu suất của mô hình.\n   - **Ngày xuất bản:** 24 tháng 4, 2023\n   - **[PDF](https://arxiv.org/pdf/2304.12244v3)**\n\n4. **[PB-LLM: Partially Binarized Large Language Models](http://arxiv.org/abs/2310.00034v2)**\n   - **Tác giả:** Yuzhang Shang, Zhihang Yuan, Qiang Wu, Zhen Dong\n   - **Tóm tắt:** Nghiên cứu này khám phá việc nén mô hình ngôn ngữ lớn thông qua phương pháp nhị phân một phần, giúp duy trì khả năng lý luận trong khi giảm kích thước mô hình.\n   - **Ngày xuất bản:** 29 tháng 9, 2023\n   - **[PDF](https://arxiv.org/pdf/2310.00034v2)**\n\n5. **[How do language models learn facts? Dynamics, curricula and hallucinations](http://arxiv.org/abs/2503.21676v2)**\n   - **Tác giả:** Nicolas Zucchet, Jörg Bornschein, Stephanie Chan, Andrew Lampinen, Razvan Pascanu, Soham De\n   - **Tóm tắt:** Nghiên cứu này điều tra động lực học học tập của các mô hình ngôn ngữ, chỉ ra rằng chúng học theo ba giai đoạn và sự phân phối dữ liệu có ảnh hưởng lớn đến quá trình học.\n   - **Ngày xuất bản:** 27 tháng 3, 2025\n   - **[PDF](https://arxiv.org/pdf/2503.21676v2)**\n\nNếu bạn cần thêm thông tin chi tiết về bất kỳ tài liệu nào, hãy cho tôi biết!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "large language model",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "large language model",
+            "api_query": "all:large AND all:language AND all:model",
+            "total_results": 96768,
+            "items": [
+              {
+                "arxiv_id": "2402.11651v2",
+                "title": "Learning From Failure: Integrating Negative Examples when Fine-tuning Large Language Models as Agents",
+                "summary": "Large language models (LLMs) have achieved success in acting as agents, which interact with environments through tools such as search engines. However, LLMs are optimized for language generation instead of tool use during training or alignment, limiting their effectiveness as agents. To resolve this problem, previous work has first collected interaction trajectories between LLMs and environments, using only trajectories that successfully finished the task to fine-tune smaller models, making fine-tuning data scarce and acquiring it both difficult and costly. Discarding failed trajectories also leads to significant wastage of data and resources and limits the possible optimization paths during fine-tuning. In this paper, we argue that unsuccessful trajectories offer valuable insights, and LLMs can learn from these trajectories through appropriate quality control and fine-tuning strategies. By simply adding a prefix or suffix that tells the model whether to generate a successful trajectory during training, we improve model performance by a large margin on mathematical reasoning, multi-hop question answering, and strategic question answering tasks. We further analyze the inference results and find that our method provides a better trade-off between valuable information and errors in unsuccessful trajectories. To our knowledge, we are the first to demonstrate the value of negative trajectories and their application in agent-tunning scenarios. Our findings offer guidance for developing better agent-tuning methods and low-resource data usage techniques.",
+                "authors": [
+                  "Renxi Wang",
+                  "Haonan Li",
+                  "Xudong Han",
+                  "Yixuan Zhang",
+                  "Timothy Baldwin"
+                ],
+                "published": "2024-02-18T17:10:07Z",
+                "updated": "2024-04-16T11:41:13Z",
+                "url": "http://arxiv.org/abs/2402.11651v2",
+                "pdf_url": "https://arxiv.org/pdf/2402.11651v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL"
+                ]
+              },
+              {
+                "arxiv_id": "2312.10793v3",
+                "title": "Demystifying Instruction Mixing for Fine-tuning Large Language Models",
+                "summary": "Instruction tuning significantly enhances the performance of large language models (LLMs) across various tasks. However, the procedure to optimizing the mixing of instruction datasets for LLM fine-tuning is still poorly understood. This study categorizes instructions into three primary types: NLP downstream tasks, coding, and general chat. We explore the effects of instruction tuning on different combinations of datasets on LLM performance, and find that certain instruction types are more advantageous for specific applications but can negatively impact other areas. This work provides insights into instruction mixtures, laying the foundations for future research.",
+                "authors": [
+                  "Renxi Wang",
+                  "Haonan Li",
+                  "Minghao Wu",
+                  "Yuxia Wang",
+                  "Xudong Han",
+                  "Chiyu Zhang",
+                  "Timothy Baldwin"
+                ],
+                "published": "2023-12-17T18:44:26Z",
+                "updated": "2024-02-18T17:13:36Z",
+                "url": "http://arxiv.org/abs/2312.10793v3",
+                "pdf_url": "https://arxiv.org/pdf/2312.10793v3",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2304.12244v3",
+                "title": "WizardLM: Empowering large pre-trained language models to follow complex instructions",
+                "summary": "Training large language models (LLMs) with open-domain instruction following data brings colossal success. However, manually creating such instruction data is very time-consuming and labor-intensive. Moreover, humans may struggle to produce high-complexity instructions. In this paper, we show an avenue for creating large amounts of instruction data with varying levels of complexity using LLM instead of humans. Starting with an initial set of instructions, we use our proposed Evol-Instruct to rewrite them step by step into more complex instructions. Then, we mix all generated instruction data to fine-tune LLaMA. We call the resulting model WizardLM. Human evaluations on a complexity-balanced test bed and Vicuna's testset show that instructions from Evol-Instruct are superior to human-created ones. By analyzing the human evaluation results of the high complexity part, we demonstrate that outputs from our WizardLM are preferred to outputs from OpenAI ChatGPT. In GPT-4 automatic evaluation, WizardLM achieves more than 90\\% capacity of ChatGPT on 17 out of 29 skills. Even though WizardLM still lags behind ChatGPT in some aspects, our findings suggest that fine-tuning with AI-evolved instructions is a promising direction for enhancing LLMs. Our code and data are public at https://github.com/nlpxucan/WizardLM",
+                "authors": [
+                  "Can Xu",
+                  "Qingfeng Sun",
+                  "Kai Zheng",
+                  "Xiubo Geng",
+                  "Pu Zhao",
+                  "Jiazhan Feng",
+                  "Chongyang Tao",
+                  "Qingwei Lin",
+                  "Daxin Jiang"
+                ],
+                "published": "2023-04-24T16:31:06Z",
+                "updated": "2025-05-27T06:49:09Z",
+                "url": "http://arxiv.org/abs/2304.12244v3",
+                "pdf_url": "https://arxiv.org/pdf/2304.12244v3",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2310.00034v2",
+                "title": "PB-LLM: Partially Binarized Large Language Models",
+                "summary": "This paper explores network binarization, a radical form of quantization, compressing model weights to a single bit, specifically for Large Language Models (LLMs) compression. Due to previous binarization methods collapsing LLMs, we propose a novel approach, Partially-Binarized LLM (PB-LLM), which can achieve extreme low-bit quantization while maintaining the linguistic reasoning capacity of quantized LLMs. Specifically, our exploration first uncovers the ineffectiveness of naive applications of existing binarization algorithms and highlights the imperative role of salient weights in achieving low-bit quantization. Thus, PB-LLM filters a small ratio of salient weights during binarization, allocating them to higher-bit storage, i.e., partially-binarization. PB-LLM is extended to recover the capacities of quantized LMMs, by analyzing from the perspective of post-training quantization (PTQ) and quantization-aware training (QAT). Under PTQ, combining the concepts from GPTQ, we reconstruct the binarized weight matrix guided by the Hessian matrix and successfully recover the reasoning capacity of PB-LLM in low-bit. Under QAT, we freeze the salient weights during training, explore the derivation of optimal scaling factors crucial for minimizing the quantization error, and propose a scaling mechanism based on this derived scaling strategy for residual binarized weights. Those explorations and the developed methodologies significantly contribute to rejuvenating the performance of low-bit quantized LLMs and present substantial advancements in the field of network binarization for LLMs.The code is available at https://github.com/hahnyuan/BinaryLLM.",
+                "authors": [
+                  "Yuzhang Shang",
+                  "Zhihang Yuan",
+                  "Qiang Wu",
+                  "Zhen Dong"
+                ],
+                "published": "2023-09-29T14:35:27Z",
+                "updated": "2023-11-07T20:41:22Z",
+                "url": "http://arxiv.org/abs/2310.00034v2",
+                "pdf_url": "https://arxiv.org/pdf/2310.00034v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.AI",
+                  "cs.CL"
+                ]
+              },
+              {
+                "arxiv_id": "2503.21676v2",
+                "title": "How do language models learn facts? Dynamics, curricula and hallucinations",
+                "summary": "Large language models accumulate vast knowledge during pre-training, yet the dynamics governing this acquisition remain poorly understood. This work investigates the learning dynamics of language models on a synthetic factual recall task, uncovering three key findings: First, language models learn in three phases, exhibiting a performance plateau before acquiring precise factual knowledge. Mechanistically, this plateau coincides with the formation of attention-based circuits that support recall. Second, the training data distribution significantly impacts learning dynamics, as imbalanced distributions lead to shorter plateaus. Finally, hallucinations emerge simultaneously with knowledge, and integrating new knowledge into the model through fine-tuning is challenging, as it quickly corrupts its existing parametric memories. Our results emphasize the importance of data distribution in knowledge acquisition and suggest novel data scheduling strategies to accelerate neural network training.",
+                "authors": [
+                  "Nicolas Zucchet",
+                  "Jörg Bornschein",
+                  "Stephanie Chan",
+                  "Andrew Lampinen",
+                  "Razvan Pascanu",
+                  "Soham De"
+                ],
+                "published": "2025-03-27T16:43:45Z",
+                "updated": "2025-07-24T14:04:20Z",
+                "url": "http://arxiv.org/abs/2503.21676v2",
+                "pdf_url": "https://arxiv.org/pdf/2503.21676v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.LG"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:21:41"
+    },
+    {
+      "turn_index": 4,
+      "started_at": "2026-07-29T17:22:09",
+      "user": "cho tôi biết thông tin về gpt5.6",
+      "status": "answered",
+      "assistant_text": "Tôi cần xác nhận thêm thông tin từ bạn. Bạn có thể cho biết rõ hơn về \"GPT-5.6\" mà bạn đang muốn tìm hiểu không? Bạn đang tìm kiếm tin tức, thông tin kỹ thuật, hay một khía cạnh cụ thể nào đó?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Tôi cần xác nhận thêm thông tin từ bạn. Bạn có thể cho biết rõ hơn về \"GPT-5.6\" mà bạn đang muốn tìm hiểu không? Bạn đang tìm kiếm tin tức, thông tin kỹ thuật, hay một khía cạnh cụ thể nào đó?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T17:22:09"
+    },
+    {
+      "turn_index": 5,
+      "started_at": "2026-07-29T17:22:24",
+      "user": "tin tức",
+      "status": "answered",
+      "assistant_text": "Hiện tại, tôi gặp sự cố khi tìm kiếm tin tức về GPT-5.6. Có thể bạn muốn thử lại sau hoặc tìm kiếm thông tin khác liên quan đến AI hoặc công nghệ không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "GPT-5.6",
+                "topic": "news"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "GPT-5.6",
+                "topic": "news"
+              },
+              "result": {
+                "tool": "web_search",
+                "error": "RuntimeError",
+                "message": "Missing TAVILY_API_KEY env var"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Hiện tại, tôi gặp sự cố khi tìm kiếm tin tức về GPT-5.6. Có thể bạn muốn thử lại sau hoặc tìm kiếm thông tin khác liên quan đến AI hoặc công nghệ không?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "GPT-5.6",
+            "topic": "news"
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:22:24"
+    },
+    {
+      "turn_index": 6,
+      "started_at": "2026-07-29T17:22:43",
+      "user": "cho tôi tin tức hôm nay",
+      "status": "answered",
+      "assistant_text": "Hiện tại, tôi không thể truy cập vào tin tức công nghệ mới nhất do gặp sự cố kỹ thuật. Bạn có muốn tôi thử lại sau hoặc tìm kiếm thông tin khác không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "tin tức công nghệ",
+                "topic": "news",
+                "timeframe": "day",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "tin tức công nghệ",
+                "topic": "news",
+                "timeframe": "day",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "web_search",
+                "error": "RuntimeError",
+                "message": "Missing TAVILY_API_KEY env var"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Hiện tại, tôi không thể truy cập vào tin tức công nghệ mới nhất do gặp sự cố kỹ thuật. Bạn có muốn tôi thử lại sau hoặc tìm kiếm thông tin khác không?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "tin tức công nghệ",
+            "topic": "news",
+            "timeframe": "day",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:22:43"
+    }
+  ],
+  "updated_at": "2026-07-29T17:22:43"
+}
