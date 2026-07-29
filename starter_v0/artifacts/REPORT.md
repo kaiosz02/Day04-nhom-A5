@@ -57,11 +57,7 @@ Trợ lý AI Tra cứu Tin tức Công nghệ: tìm tin tức công nghệ/AI/LL
 | news_digest | tổng hợp nhiều kết quả thành bản tin ngắn | Tool mới #4 (bonus) |
 | entity_extractor | trích xuất tên công ty/sản phẩm/nhân vật từ nội dung văn bản | Tool mới #5 (bonus) |
 
-> ✅ Cả 5 tool trên đã có đủ `TOOL.md` + `tool.py`, đúng contract của `tools/README.md`.
->
-> Nhóm hiện có **5 tool mới** (>3), đủ điều kiện xét bonus theo README. Lưu ý: `tech_trending`, `topic_trends`, `source_ranker`, `news_digest`, `entity_extractor` đều xử lý **local** (dữ liệu mẫu/xử lý text nội bộ, không gọi API ngoài thật) — cần nói rõ điều này khi demo để không gây hiểu nhầm là dữ liệu GitHub/tin tức thời gian thực.
->
-> `send`, `policy`, `papers`, `paper_text` không còn nằm trong scope demo chính (không dùng Telegram); `policy`/`papers`/`paper_text` vẫn còn declaration trong `tools.yaml` (dùng cho case cũ trong `eval_group.json`) nên chưa liệt kê lại ở đây.
+> 5 tool trên xử lý local (dữ liệu mẫu/xử lý text nội bộ, không gọi API ngoài thật). `send` không dùng trong demo (không kết nối Telegram); `policy`/`papers`/`paper_text` vẫn khai báo trong `tools.yaml` để phục vụ một số case trong `eval_group.json`.
 
 ## A3. Câu hỏi mẫu để thử
 
@@ -106,8 +102,6 @@ Fill from `artifacts/version_log.csv` and `runs/*.json`.
 > Lưu ý: có 1 file `runs/v1_B_base_openrouter_20260729T155136852024.json` cùng thời điểm nhưng `provider_error_cases=20/20` (toàn bộ case lỗi provider, không đo được) — **không dùng file này làm evidence**, chỉ dùng bản chạy `openai` ở trên.
 
 **Chi tiết metric v2**: `total_cases=20`, `measured_cases=20`, `provider_error_cases=0` (hợp lệ) · `case_accuracy=0.90` (+0.05 so với v1) · `tool_routing_accuracy=0.95` · `argument_accuracy=0.90` · `multiturn_accuracy=0.833` (tăng từ 0.667 ở v1, nhưng vẫn chưa lại được mức 1.00 của v0). `artifact_version=v2+p1edc6c44c37e+t5e044aede690` — hash này khác hẳn v1 (`p18f7870af615/t97391bc363be`), xác nhận đây là một thay đổi thật, không phải run trùng lặp.
-
-> ✅ **Đã sửa (2026-07-29):** dòng `v0` trong `artifacts/version_log.csv` trước đó dùng nhầm hash/run_file của v1. Đã cập nhật lại đúng: `artifact_version=v0+peb1c8179815b+t6cdb53d5d7b8`, `metric_after=0.70`, `run_file=runs/v0_B_base_openai_20260729T153133080224.json`. Cả 3 dòng v0/v1/v2 giờ đã khớp với run file thật.
 
 ## B2. Failure analysis
 
@@ -162,9 +156,7 @@ not belong here.
 
 File template để trống có chủ đích; nhóm phải tự thiết kế đủ 10 case.
 
-> ✅ Đã sửa đúng **10 case** (5 single + 5 multi) — bộ case dư (`G11-G13`, tool `policy`) đã được rút gọn, thay `G05_search_papers` cũ bằng `G05_policy_data_privacy`.
->
-> ⚠️ Vẫn chưa thấy run nào với `--suite group` trong `runs/` — cột Result dưới đây để trống vì chưa có evidence thật; cần chạy `python run_eval.py --provider openai --version v2 --suite group --eval-cases data/eval_group.json` (hoặc version mới nhất khi có v3) rồi điền lại.
+> Chưa chạy `--suite group` — cột Result để trống, cần chạy `python run_eval.py --provider openai --version v2 --suite group --eval-cases data/eval_group.json` (hoặc version mới nhất) rồi điền lại.
 
 | Case ID | Kind | Failure Type | What It Tests | Expected Tool/Behavior | Result |
 |---|---|---|---|---|---|
