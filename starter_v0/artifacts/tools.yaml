@@ -97,7 +97,7 @@ tools:
     parameters:
       type: object
       properties:
-        arxiv_url: {type: string, default: "", description: "URL hoặc ID của bài báo trên arXiv"}
+        arxiv_url: {type: string, default: "", description: "Đường link (URL) đầy đủ của bài báo trên arXiv (ví dụ: https://arxiv.org/abs/2401.00001)"}
         max_pages: {type: integer, default: 5, description: "Số trang tối đa để đọc"}
         max_chars: {type: integer, default: 10000, description: "Số ký tự tối đa để lấy"}
       required: [arxiv_url, max_pages, max_chars]
