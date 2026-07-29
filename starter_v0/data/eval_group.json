@@ -3,5 +3,258 @@
   "dataset_role": "group",
   "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+  {
+    "id": "G01_lookup_ai_news",
+    "phase": "B",
+    "failure_type": "wrong_tool",
+    "query": "Tin tức AI hôm nay có gì nổi bật?",
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "lookup",
+          "args": {
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day",
+            "max_results": 5
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Tra cứu tin AI trong ngày bằng lookup."
+    }
+  },
+  {
+    "id": "G02_openai_timeline",
+    "phase": "B",
+    "failure_type": "wrong_tool",
+    "query": "Lấy 5 tweet mới nhất của OpenAI",
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "timeline",
+          "args": {
+            "screenname": "openai",
+            "limit": 5
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Tra cứu timeline của tài khoản OpenAI."
+    }
+  },
+  {
+    "id": "G03_social_search_gemini",
+    "phase": "B",
+    "failure_type": "wrong_tool",
+    "query": "Mọi người đang nói gì về Google Gemini trên X?",
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "social_search",
+          "args": {
+            "query": "Google Gemini",
+            "search_type": "Latest",
+            "limit": 10
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Tìm bài đăng mạng xã hội theo chủ đề."
+    }
+  },
+  {
+    "id": "G04_fetch_article",
+    "phase": "B",
+    "failure_type": "wrong_tool",
+    "query": "Tóm tắt bài viết này: https://openai.com/news",
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "fetch",
+          "args": {
+            "url": "https://openai.com/news"
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Đọc nội dung từ URL."
+    }
+  },
+  {
+    "id": "G05_search_papers",
+    "phase": "B",
+    "failure_type": "wrong_tool",
+    "query": "Tìm 5 paper mới về Retrieval-Augmented Generation",
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "papers",
+          "args": {
+            "query": "Retrieval-Augmented Generation",
+            "max_results": 5,
+            "sort_by": "submittedDate"
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Tra cứu paper mới trên arXiv."
+    }
+  },
+  {
+    "id": "G06_clarify_then_fetch",
+    "phase": "B",
+    "failure_type": "missing_info",
+    "turns": [
+      {
+        "role": "user",
+        "content": "Tóm tắt bài viết này giúp mình"
+      },
+      {
+        "role": "user",
+        "content": "https://openai.com/news"
+      }
+    ],
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "fetch",
+          "args": {
+            "url": "https://openai.com/news"
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Thiếu URL, sau khi người dùng bổ sung thì gọi fetch."
+    }
+  },
+  {
+    "id": "G07_clarify_then_timeline",
+    "phase": "B",
+    "failure_type": "missing_info",
+    "turns": [
+      {
+        "role": "user",
+        "content": "Cho mình 3 tweet mới nhất"
+      },
+      {
+        "role": "user",
+        "content": "Của OpenAI"
+      }
+    ],
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "timeline",
+          "args": {
+            "screenname": "openai",
+            "limit": 3
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Bổ sung tên tài khoản ở lượt hội thoại tiếp theo."
+    }
+  },
+  {
+    "id": "G08_paper_then_text",
+    "phase": "B",
+    "failure_type": "wrong_tool",
+    "turns": [
+      {
+        "role": "user",
+        "content": "Tìm paper về AI Agent"
+      },
+      {
+        "role": "user",
+        "content": "Đọc nội dung paper này: https://arxiv.org/abs/2401.00001"
+      }
+    ],
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "paper_text",
+          "args": {
+            "arxiv_url": "https://arxiv.org/abs/2401.00001",
+            "max_pages": 5,
+            "max_chars": 10000
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Đọc nội dung paper từ URL arXiv."
+    }
+  },
+  {
+    "id": "G09_change_topic",
+    "phase": "B",
+    "failure_type": "wrong_arg_value",
+    "turns": [
+      {
+        "role": "user",
+        "content": "Tin AI hôm nay"
+      },
+      {
+        "role": "user",
+        "content": "Đổi sang Robotics nhưng vẫn là hôm nay"
+      }
+    ],
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "lookup",
+          "args": {
+            "query": "Robotics",
+            "topic": "news",
+            "timeframe": "day",
+            "max_results": 5
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Đổi query nhưng giữ timeframe."
+    }
+  },
+  {
+    "id": "G10_switch_social_to_web",
+    "phase": "B",
+    "failure_type": "wrong_tool",
+    "turns": [
+      {
+        "role": "user",
+        "content": "Mọi người nói gì về ChatGPT trên X?"
+      },
+      {
+        "role": "user",
+        "content": "Không dùng X nữa, tìm tin trên web về ChatGPT"
+      }
+    ],
+    "expect": {
+      "tool_calls": [
+        {
+          "name": "lookup",
+          "args": {
+            "query": "ChatGPT",
+            "topic": "news",
+            "timeframe": "week",
+            "max_results": 5
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "what_it_tests": "Chuyển từ social_search sang lookup."
+    }
+  }
+]
 }
