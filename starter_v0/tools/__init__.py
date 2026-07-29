@@ -16,6 +16,11 @@ from .format.tool import render_digest
 from .policy.tool import search_company_policy
 from .social_search.tool import search_tweets
 from .lookup.tool import web_search
+from .topic_trends.tool import analyze_topics
+from .source_ranker.tool import rank_sources
+from .news_digest.tool import build_digest
+from .entity_extractor.tool import extract_entities
+from .tech_trending.tool import get_tech_trending
 
 
 # NOTE (starter_v0): tool names here are intentionally vague. These keys are the
@@ -33,6 +38,11 @@ TOOL_FUNCTIONS = {
     "policy": search_company_policy,
     "papers": arxiv_search,
     "paper_text": get_arxiv_paper_text,
+    "topic_trends": analyze_topics,
+    "source_ranker": rank_sources,
+    "news_digest": build_digest,
+    "entity_extractor": extract_entities,
+    "tech_trending": get_tech_trending,
 }
 
 

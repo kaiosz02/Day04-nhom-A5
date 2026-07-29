@@ -101,3 +101,46 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang tối đa để đọc"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự tối đa để lấy"}
       required: [arxiv_url]
+
+  - name: topic_trends
+    description: "Phân tích các chủ đề đang nóng từ nhiều tin tức đã thu thập để hỗ trợ tạo bản tin công nghệ."
+    parameters:
+      type: object
+      properties:
+        items: {type: array, default: [], description: "Danh sách các item cần phân tích"}
+        top_k: {type: integer, default: 5, description: "Số chủ đề nóng tối đa"}
+      required: [items]
+
+  - name: source_ranker
+    description: "Đánh giá và xếp hạng nguồn tin để chọn nguồn phù hợp nhất cho phân tích hoặc bản tin."
+    parameters:
+      type: object
+      properties:
+        items: {type: array, default: [], description: "Danh sách các item cần xếp hạng"}
+      required: [items]
+
+  - name: news_digest
+    description: "Tổng hợp nhiều kết quả thành một bản tin ngắn, dễ đọc và có cấu trúc."
+    parameters:
+      type: object
+      properties:
+        items: {type: array, default: [], description: "Danh sách các item cần tổng hợp"}
+        headline: {type: string, default: "News Digest", description: "Tiêu đề bản tin"}
+      required: [items]
+
+  - name: entity_extractor
+    description: "Trích xuất thực thể như tên công ty, sản phẩm, công nghệ và nhân vật quan trọng từ nội dung văn bản."
+    parameters:
+      type: object
+      properties:
+        text: {type: string, default: "", description: "Nội dung văn bản cần trích xuất thực thể"}
+      required: [text]
+
+  - name: tech_trending
+    description: "Lấy danh sách các chủ đề công nghệ đang nổi bật để hỗ trợ theo dõi xu hướng."
+    parameters:
+      type: object
+      properties:
+        topic: {type: string, default: "ai", description: "Chủ đề công nghệ cần theo dõi"}
+        limit: {type: integer, default: 5, description: "Số lượng kết quả"}
+      required: [topic]
