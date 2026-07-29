@@ -14,7 +14,7 @@
   - Hoàng Thị Trà My - 2A202601290 - Role 4: Dev
   - Hồ Thanh Bình - 2A202601832 - Role 5: Trace Analyst
   - Nguyễn Thị Việt Vinh - 2A202601836 - Role 6: Flowchart Architect
-- Provider/model: Gemini
+- Provider/model: openai
 
 ---
 
