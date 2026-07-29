@@ -11,11 +11,13 @@ def tool_names(calls: list[dict[str, Any]]) -> str:
     return "|".join(call.get("name", "") for call in calls)
 
 
+
 def first_expected_tool(expect: dict[str, Any]) -> str:
     calls = expect.get("tool_calls") or []
     if not calls:
         return "no_tool" if expect.get("no_tool") else ""
     return "|".join(call.get("name", "") for call in calls)
+
 
 
 def row_for(run: dict[str, Any], result_item: dict[str, Any]) -> dict[str, Any]:
@@ -36,6 +38,7 @@ def row_for(run: dict[str, Any], result_item: dict[str, Any]) -> dict[str, Any]:
         "args_correct": result.get("args_correct"),
         "failures": "; ".join(result.get("failures") or []),
     }
+
 
 
 def iter_run_files(paths: list[Path]) -> list[Path]:
@@ -80,6 +83,7 @@ def main() -> None:
     writer = csv.DictWriter(sys.stdout, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(rows)
+
 
 
 if __name__ == "__main__":

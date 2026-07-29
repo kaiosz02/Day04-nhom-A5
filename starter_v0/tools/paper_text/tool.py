@@ -11,7 +11,7 @@ import requests
 from tools._shared import ROOT, TIMEOUT, err
 
 
-ARXIV_DIR = ROOT / "arxiv_papers"
+ARXIV_DIR = ROOT /  "arxiv_papers"
 ARXIV_MIN_INTERVAL_SECONDS = 3.0
 _last_arxiv_request_at = 0.0
 
