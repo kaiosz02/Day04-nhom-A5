@@ -1,5 +1,5 @@
 {
-  "run_id": "v2_B_base_openai_20260729T162231479111",
+  "run_id": "v2_B_base_openai_20260729T162726879988",
   "version": "v2",
   "artifact_version": "v2+p1edc6c44c37e+t5e044aede690",
   "prompt_hash": "1edc6c44c37ed669543978513f515121fb995862ff6a0f9523b17a7a60295b9e",
@@ -14,7 +14,7 @@
   "dataset_id": "day04_v2_research_base",
   "dataset_role": "base",
   "description": "Core eval cho research agent: routing đúng tool + đúng args, hỏi lại khi thiếu (ask_user), xác nhận trước khi gửi, và xử lý câu ngoài phạm vi / không cần tool. Chấm trên tool_calls + args (subset). KHÔNG sửa file này — chỉ thêm case vào eval_group.json.",
-  "generated_at": "2026-07-29T16:22:31",
+  "generated_at": "2026-07-29T16:27:26",
   "summary": {
     "total_cases": 20,
     "measured_cases": 20,
@@ -455,7 +455,7 @@
         "routing_correct": true,
         "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": "Nguyên hàm của hàm số \\( x^2 \\) là:\n\n\\[\n\\int x^2 \\, dx = \\frac{x^3}{3} + C\n\\]\n\nTrong đó \\( C \\) là hằng số tích phân.",
+        "actual_text": "Nguyên hàm của \\( x^2 \\) là một hàm mà khi lấy đạo hàm sẽ cho ra \\( x^2 \\). Nguyên hàm của \\( x^n \\) (với \\( n \\neq -1 \\)) được tính theo công thức:\n\n\\[\n\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C\n\\]\n\nTrong trường hợp này, với \\( n = 2 \\):\n\n\\[\n\\int x^2 \\, dx = \\frac{x^{2+1}}{2+1} + C = \\frac{x^3}{3} + C\n\\]\n\nVậy nguyên hàm của \\( x^2 \\) là:\n\n\\[\n\\frac{x^3}{3} + C\n\\]\n\nTrong đó \\( C \\) là hằng số tích phân.",
         "case_failure_type": "out_of_scope",
         "observed_mismatch": null,
         "failure_type": null,
@@ -484,7 +484,7 @@
         "routing_correct": true,
         "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": "Tôi là một Trợ lý AI chuyên Tra cứu Tin tức Công nghệ. Nhiệm vụ của tôi là giúp bạn tìm kiếm, tóm tắt và cập nhật các tin tức mới nhất về công nghệ, trí tuệ nhân tạo (AI) và các bài báo khoa học. Tôi có thể:\n\n- Tìm kiếm tin tức công nghệ mới nhất.\n- Tra cứu thông tin từ mạng xã hội.\n- Đọc và tóm tắt nội dung từ các bài báo khoa học.\n- Cung cấp thông tin về các nghiên cứu và bài báo liên quan đến công nghệ và AI.\n\nNếu bạn có bất kỳ câu hỏi nào hoặc cần tìm kiếm thông tin cụ thể, hãy cho tôi biết!",
+        "actual_text": "Tôi là một Trợ lý AI chuyên tra cứu tin tức công nghệ. Nhiệm vụ của tôi là giúp bạn tìm kiếm, tóm tắt và cập nhật các tin tức mới nhất về công nghệ, trí tuệ nhân tạo (AI) và các bài báo khoa học. \n\nCụ thể, tôi có thể:\n- Tìm kiếm tin tức công nghệ mới nhất.\n- Tra cứu thông tin về các công ty công nghệ, sản phẩm hoặc xu hướng.\n- Tìm kiếm và đọc các bài báo khoa học.\n- Cung cấp thông tin từ mạng xã hội về các chủ đề công nghệ đang hot.\n\nNếu bạn có bất kỳ câu hỏi nào về công nghệ hoặc cần thông tin cụ thể, hãy cho tôi biết!",
         "case_failure_type": "unnecessary_tool",
         "observed_mismatch": null,
         "failure_type": null,
@@ -580,7 +580,7 @@
           {
             "name": "fetch",
             "args": {
-              "url": "https://example.com"
+              "url": "https://"
             }
           }
         ],
@@ -597,7 +597,7 @@
         {
           "tool": "fetch",
           "args": {
-            "url": "https://example.com"
+            "url": "https://"
           },
           "result": {
             "tool": "read_url",
@@ -637,7 +637,7 @@
           {
             "name": "clarify",
             "args": {
-              "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm thông tin hoặc tóm tắt một bản tin công nghệ nào không?",
+              "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm hoặc tóm tắt thông tin nào không?",
               "response_type": "yes_no"
             }
           }
@@ -652,12 +652,12 @@
         {
           "tool": "clarify",
           "args": {
-            "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm thông tin hoặc tóm tắt một bản tin công nghệ nào không?",
+            "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm hoặc tóm tắt thông tin nào không?",
             "response_type": "yes_no"
           },
           "result": {
             "tool": "ask_user",
-            "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm thông tin hoặc tóm tắt một bản tin công nghệ nào không?",
+            "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm hoặc tóm tắt thông tin nào không?",
             "response_type": "yes_no",
             "options": [],
             "awaiting_user": true
@@ -775,7 +775,7 @@
         "routing_correct": true,
         "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": "Dưới đây là một hàm Python để tính số Fibonacci bằng phương pháp đệ quy:\n\n```python\ndef fibonacci(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\n# Ví dụ sử dụng\nn = 10\nprint(f\"Fibonacci của {n} là: {fibonacci(n)}\")\n```\n\nHàm `fibonacci` nhận một số nguyên `n` và trả về số Fibonacci tương ứng. Nếu `n` là 0, hàm trả về 0; nếu `n` là 1, hàm trả về 1. Đối với các giá trị lớn hơn 1, hàm sẽ gọi chính nó để tính tổng của hai số Fibonacci trước đó.",
+        "actual_text": "Dưới đây là một hàm Python sử dụng đệ quy để tính số Fibonacci:\n\n```python\ndef fibonacci(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\n# Ví dụ sử dụng\nn = 10\nprint(f\"Fibonacci({n}) = {fibonacci(n)}\")\n```\n\nHàm `fibonacci` nhận một số nguyên `n` và trả về số Fibonacci tương ứng. Nếu `n` là 0, hàm trả về 0; nếu `n` là 1, hàm trả về 1. Đối với các giá trị lớn hơn 1, hàm sẽ gọi chính nó để tính tổng của hai số Fibonacci trước đó.",
         "case_failure_type": "out_of_scope",
         "observed_mismatch": null,
         "failure_type": null,
