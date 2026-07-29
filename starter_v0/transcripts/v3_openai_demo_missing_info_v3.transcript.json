@@ -1,0 +1,30 @@
+{
+  "transcript_id": "v3_openai_demo_missing_info_v3",
+  "version": "v3",
+  "artifact_version": "v3+p767d2ab4479f+t93603adf1fc9",
+  "prompt_hash": "767d2ab4479f9a6214859b545e9d3100bc69df8fa59b0e30bcef91516ba34d73",
+  "tools_hash": "93603adf1fc9112d0fde03753ceaaa0b5f3fba33672afb69020a10d946c89064",
+  "provider": "openai",
+  "model": null,
+  "created_at": "2026-07-29T17:50:35",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:50:35",
+      "user": "Cho tôi xem 5 bài đăng gần nhất của người đó",
+      "status": "answered",
+      "assistant_text": "Bạn có thể cho tôi biết tên tài khoản mà bạn muốn xem bài đăng gần nhất không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Bạn có thể cho tôi biết tên tài khoản mà bạn muốn xem bài đăng gần nhất không?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T17:50:35"
+    }
+  ],
+  "updated_at": "2026-07-29T17:50:35"
+}
