@@ -1,9 +1,9 @@
 {
-  "run_id": "v0_B_base_openai_20260729T160422156449",
-  "version": "v0",
-  "artifact_version": "v0+p18f7870af615+t97391bc363be",
-  "prompt_hash": "18f7870af6151f93582527704356a35ae0d6618d1f20c635322a3dab0ef808b0",
-  "tools_hash": "97391bc363be05effa822ad439e025740cfe0cb678f97d7eed9596692dc637ff",
+  "run_id": "v2_B_base_openai_20260729T162231479111",
+  "version": "v2",
+  "artifact_version": "v2+p1edc6c44c37e+t5e044aede690",
+  "prompt_hash": "1edc6c44c37ed669543978513f515121fb995862ff6a0f9523b17a7a60295b9e",
+  "tools_hash": "5e044aede69007514af856842e8c618044dd07c88db59f517df3bd474d3cc931",
   "phase": "B",
   "suite": "base",
   "provider": "openai",
@@ -14,22 +14,23 @@
   "dataset_id": "day04_v2_research_base",
   "dataset_role": "base",
   "description": "Core eval cho research agent: routing đúng tool + đúng args, hỏi lại khi thiếu (ask_user), xác nhận trước khi gửi, và xử lý câu ngoài phạm vi / không cần tool. Chấm trên tool_calls + args (subset). KHÔNG sửa file này — chỉ thêm case vào eval_group.json.",
-  "generated_at": "2026-07-29T16:04:22",
+  "generated_at": "2026-07-29T16:22:31",
   "summary": {
     "total_cases": 20,
     "measured_cases": 20,
     "provider_error_cases": 0,
     "passed_cases": 18,
     "case_accuracy": 0.9,
-    "tool_routing_accuracy": 1.0,
+    "tool_routing_accuracy": 0.95,
     "argument_accuracy": 0.9,
     "multiturn_accuracy": 0.8333,
     "failure_counts": {
-      "wrong_boundary": 1,
+      "missing_info": 1,
       "wrong_arg_value": 1
     },
     "observed_mismatch_counts": {
-      "wrong_arg_value": 2
+      "missing_tool_call": 1,
+      "wrong_arg_value": 1
     }
   },
   "results": [
@@ -179,7 +180,8 @@
             "args": {
               "query": "AI",
               "topic": "news",
-              "timeframe": "day"
+              "timeframe": "day",
+              "max_results": 5
             }
           }
         ],
@@ -195,7 +197,8 @@
           "args": {
             "query": "AI",
             "topic": "news",
-            "timeframe": "day"
+            "timeframe": "day",
+            "max_results": 5
           },
           "result": {
             "tool": "web_search",
@@ -481,7 +484,7 @@
         "routing_correct": true,
         "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": "Tôi là một Trợ lý AI chuyên Tra cứu Tin tức Công nghệ. Nhiệm vụ của tôi là giúp bạn tìm kiếm, tóm tắt và cập nhật các tin tức mới nhất về công nghệ, trí tuệ nhân tạo (AI) và các bài báo khoa học. \n\nCụ thể, tôi có thể:\n- Tìm kiếm tin tức công nghệ mới nhất.\n- Tra cứu thông tin từ mạng xã hội.\n- Đọc và tóm tắt nội dung từ các bài báo hoặc tài liệu khoa học.\n- Cung cấp thông tin về các nghiên cứu và bài báo khoa học liên quan đến công nghệ và AI.\n\nNếu bạn có bất kỳ câu hỏi nào hoặc cần tìm kiếm thông tin cụ thể, hãy cho tôi biết!",
+        "actual_text": "Tôi là một Trợ lý AI chuyên Tra cứu Tin tức Công nghệ. Nhiệm vụ của tôi là giúp bạn tìm kiếm, tóm tắt và cập nhật các tin tức mới nhất về công nghệ, trí tuệ nhân tạo (AI) và các bài báo khoa học. Tôi có thể:\n\n- Tìm kiếm tin tức công nghệ mới nhất.\n- Tra cứu thông tin từ mạng xã hội.\n- Đọc và tóm tắt nội dung từ các bài báo khoa học.\n- Cung cấp thông tin về các nghiên cứu và bài báo liên quan đến công nghệ và AI.\n\nNếu bạn có bất kỳ câu hỏi nào hoặc cần tìm kiếm thông tin cụ thể, hãy cho tôi biết!",
         "case_failure_type": "unnecessary_tool",
         "observed_mismatch": null,
         "failure_type": null,
@@ -570,37 +573,36 @@
         ]
       },
       "result": {
-        "passed": true,
-        "routing_correct": true,
-        "args_correct": true,
+        "passed": false,
+        "routing_correct": false,
+        "args_correct": false,
         "actual_tool_calls": [
           {
-            "name": "clarify",
+            "name": "fetch",
             "args": {
-              "question": "Bạn có thể cung cấp URL của bài viết mà bạn muốn tóm tắt không?",
-              "response_type": "text"
+              "url": "https://example.com"
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "missing_info",
-        "observed_mismatch": null,
-        "failure_type": null,
-        "failures": []
+        "observed_mismatch": "missing_tool_call",
+        "failure_type": "missing_info",
+        "failures": [
+          "missing tool call clarify",
+          "extra tool call fetch"
+        ]
       },
       "tool_results": [
         {
-          "tool": "clarify",
+          "tool": "fetch",
           "args": {
-            "question": "Bạn có thể cung cấp URL của bài viết mà bạn muốn tóm tắt không?",
-            "response_type": "text"
+            "url": "https://example.com"
           },
           "result": {
-            "tool": "ask_user",
-            "question": "Bạn có thể cung cấp URL của bài viết mà bạn muốn tóm tắt không?",
-            "response_type": "text",
-            "options": [],
-            "awaiting_user": true
+            "tool": "read_url",
+            "error": "RuntimeError",
+            "message": "Missing FIRECRAWL_API_KEY env var"
           }
         }
       ]
@@ -628,37 +630,35 @@
         ]
       },
       "result": {
-        "passed": false,
+        "passed": true,
         "routing_correct": true,
-        "args_correct": false,
+        "args_correct": true,
         "actual_tool_calls": [
           {
             "name": "clarify",
             "args": {
-              "question": "Bạn có thể cung cấp nội dung cụ thể của bản tin mà bạn muốn đăng lên Telegram không?",
-              "response_type": "text"
+              "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm thông tin hoặc tóm tắt một bản tin công nghệ nào không?",
+              "response_type": "yes_no"
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_boundary",
-        "observed_mismatch": "wrong_arg_value",
-        "failure_type": "wrong_boundary",
-        "failures": [
-          "response_type: expected 'yes_no', got 'text'"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
       "tool_results": [
         {
           "tool": "clarify",
           "args": {
-            "question": "Bạn có thể cung cấp nội dung cụ thể của bản tin mà bạn muốn đăng lên Telegram không?",
-            "response_type": "text"
+            "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm thông tin hoặc tóm tắt một bản tin công nghệ nào không?",
+            "response_type": "yes_no"
           },
           "result": {
             "tool": "ask_user",
-            "question": "Bạn có thể cung cấp nội dung cụ thể của bản tin mà bạn muốn đăng lên Telegram không?",
-            "response_type": "text",
+            "question": "Mình không thể đăng tin lên Telegram. Bạn có muốn mình giúp bạn tìm kiếm thông tin hoặc tóm tắt một bản tin công nghệ nào không?",
+            "response_type": "yes_no",
             "options": [],
             "awaiting_user": true
           }
@@ -775,7 +775,7 @@
         "routing_correct": true,
         "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": "Dưới đây là một hàm Python sử dụng đệ quy để tính số Fibonacci:\n\n```python\ndef fibonacci(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\n# Ví dụ sử dụng\nn = 10\nprint(f\"Số Fibonacci thứ {n} là: {fibonacci(n)}\")\n```\n\nHàm `fibonacci` nhận một số nguyên `n` và trả về số Fibonacci thứ `n`. Nếu `n` là 0, hàm trả về 0; nếu `n` là 1, hàm trả về 1. Đối với các giá trị lớn hơn 1, hàm sẽ gọi chính nó để tính tổng của hai số Fibonacci trước đó.",
+        "actual_text": "Dưới đây là một hàm Python để tính số Fibonacci bằng phương pháp đệ quy:\n\n```python\ndef fibonacci(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\n# Ví dụ sử dụng\nn = 10\nprint(f\"Fibonacci của {n} là: {fibonacci(n)}\")\n```\n\nHàm `fibonacci` nhận một số nguyên `n` và trả về số Fibonacci tương ứng. Nếu `n` là 0, hàm trả về 0; nếu `n` là 1, hàm trả về 1. Đối với các giá trị lớn hơn 1, hàm sẽ gọi chính nó để tính tổng của hai số Fibonacci trước đó.",
         "case_failure_type": "out_of_scope",
         "observed_mismatch": null,
         "failure_type": null,
