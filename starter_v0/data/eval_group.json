@@ -255,6 +255,78 @@
     "metadata": {
       "what_it_tests": "Chuyển từ social_search sang lookup."
     }
+  },
+  {
+  "id": "G11_policy_source_citation",
+  "phase": "B",
+  "failure_type": "wrong_tool",
+  "query": "Chính sách của công ty về việc trích dẫn nguồn khi sử dụng AI là gì?",
+  "expect": {
+    "tool_calls": [
+      {
+        "name": "policy",
+        "args": {
+          "query": "trích dẫn nguồn AI",
+          "policy_area": "source_citation",
+          "top_k": 3
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "what_it_tests": "Agent phải chọn policy thay vì lookup."
   }
-]
+  },
+  {
+  "id": "G12_policy_data_privacy",
+  "phase": "B",
+  "failure_type": "wrong_tool",
+  "query": "Quy định nội bộ về bảo mật dữ liệu khi dùng AI là gì?",
+  "expect": {
+    "tool_calls": [
+      {
+        "name": "policy",
+        "args": {
+          "query": "bảo mật dữ liệu AI",
+          "policy_area": "data_privacy",
+          "top_k": 3
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "what_it_tests": "Tra cứu chính sách nội bộ về Data Privacy."
+  }
+  },
+  {
+  "id": "G13_policy_clarify",
+  "phase": "B",
+  "failure_type": "missing_info",
+  "turns": [
+    {
+      "role": "user",
+      "content": "Cho mình xem chính sách nội bộ."
+    },
+    {
+      "role": "user",
+      "content": "Chính sách về AI Research."
+    }
+  ],
+  "expect": {
+    "tool_calls": [
+      {
+        "name": "policy",
+        "args": {
+          "query": "AI Research",
+          "policy_area": "ai_research",
+          "top_k": 3
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "what_it_tests": "Thiếu loại chính sách ở lượt đầu, sau khi người dùng bổ sung thì gọi policy."
+  }
+  }
+  ]
 }
