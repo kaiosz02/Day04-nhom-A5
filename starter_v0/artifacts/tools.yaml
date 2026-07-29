@@ -19,7 +19,7 @@ tools:
       properties:
         screenname: {type: string, default: "", description: "Tên tài khoản (ví dụ: elonmusk)"}
         limit: {type: integer, default: 5, description: "Số lượng bài đăng cần lấy"}
-      required: [screenname]
+      required: [screenname, limit]
 
   - name: social_search
     description: "Sử dụng để tìm kiếm TỪ KHÓA hoặc CHỦ ĐỀ đang thịnh hành trên MẠNG XÃ HỘI. KHÔNG dùng để tra cứu Google hay bài báo khoa học. Nếu người dùng hỏi 'cộng đồng mạng nói gì về AI', hãy dùng tool này."
@@ -28,11 +28,11 @@ tools:
       properties:
         query: {type: string, default: "", description: "Từ khóa cần tìm trên mạng xã hội"}
         search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Sắp xếp theo mới nhất (Latest) hoặc phổ biến nhất (Top)"}
-        limit: {type: integer, default: 5, description: "Số lượng kết quả tối đa"}
-      required: [query]
+        limit: {type: integer, default: 10, description: "Số lượng kết quả tối đa"}
+      required: [query, search_type, limit]
 
   - name: lookup
-    description: "Sử dụng để TÌM KIẾM TIN TỨC hoặc KIẾN THỨC CHUNG trên Internet (Google Search). Dùng để tra cứu sự kiện, công ty công nghệ, hoặc khái niệm. Hãy set topic='news' nếu tìm tin tức công nghệ."
+    description: "Sử dụng để TÌM KIẾM TIN TỨC hoặc KIẾN THỨC CHUNG trên Internet (Google Search). Dùng để tra cứu sự kiện, công ty công nghệ, hoặc khái niệm. Hãy set topic='news' nếu tìm tin tức công nghệ. Chú ý giữ nguyên (carry over) các tham số như timeframe từ câu lệnh trước trong ngữ cảnh đa lượt."
     parameters:
       type: object
       properties:
@@ -40,14 +40,14 @@ tools:
         topic: {type: string, enum: [general, news], default: "general", description: "Phân loại tìm kiếm: news cho tin tức, general cho thông tin chung"}
         timeframe: {type: string, enum: [day, week, month, year], default: "week", description: "Giới hạn thời gian của kết quả"}
         max_results: {type: integer, default: 5, description: "Số lượng kết quả tối đa"}
-      required: [query]
+      required: [query, topic, timeframe, max_results]
 
   - name: fetch
-    description: "Sử dụng để ĐỌC TOÀN BỘ NỘI DUNG TEXT của một đường link (URL) cụ thể. Chỉ dùng khi bạn đã có URL từ các bước tìm kiếm trước đó hoặc do người dùng cung cấp."
+    description: "Sử dụng để ĐỌC TOÀN BỘ NỘI DUNG TEXT của một đường link (URL) cụ thể. Chỉ dùng khi bạn đã CÓ SẴN URL hợp lệ. NẾU KHÔNG CÓ URL, PHẢI GỌI clarify. TUYỆT ĐỐI KHÔNG DÙNG CHO LINK ARXIV (arxiv.org), nếu là arxiv hãy dùng paper_text."
     parameters:
       type: object
       properties:
-        url: {type: string, default: "", description: "Địa chỉ URL cần đọc (phải bắt đầu bằng http/https)"}
+        url: {type: string, default: "", description: "Địa chỉ URL cần đọc (phải bắt đầu bằng http/https). TUYỆT ĐỐI không dùng URL giả như 'https://' hay chuỗi rỗng."}
       required: [url]
 
   - name: format
@@ -80,7 +80,7 @@ tools:
         query: {type: string, default: "", description: "Từ khóa tìm kiếm trong tài liệu nội bộ"}
         policy_area: {type: string, enum: [all, ai_research, source_citation, data_privacy, external_publishing, tool_usage], default: "all", description: "Khu vực tài liệu"}
         top_k: {type: integer, default: 3, description: "Số kết quả trả về"}
-      required: [query]
+      required: [query, policy_area, top_k]
 
   - name: papers
     description: "Sử dụng để tra cứu các BÀI BÁO KHOA HỌC (Academic Papers) trên arXiv. Dùng khi người dùng hỏi về 'nghiên cứu', 'bài báo AI mới', 'paper'."
@@ -90,7 +90,7 @@ tools:
         query: {type: string, default: "", description: "Từ khóa của bài báo nghiên cứu"}
         max_results: {type: integer, default: 5, description: "Số lượng bài báo trả về"}
         sort_by: {type: string, enum: [relevance, lastUpdatedDate, submittedDate], default: "relevance", description: "Cách sắp xếp"}
-      required: [query]
+      required: [query, max_results, sort_by]
 
   - name: paper_text
     description: "Sử dụng để trích xuất và đọc nội dung văn bản (text) từ một bài báo khoa học (arXiv PDF). Cần có arxiv_url (ID bài báo)."
@@ -99,8 +99,8 @@ tools:
       properties:
         arxiv_url: {type: string, default: "", description: "URL hoặc ID của bài báo trên arXiv"}
         max_pages: {type: integer, default: 5, description: "Số trang tối đa để đọc"}
-        max_chars: {type: integer, default: 8000, description: "Số ký tự tối đa để lấy"}
-      required: [arxiv_url]
+        max_chars: {type: integer, default: 10000, description: "Số ký tự tối đa để lấy"}
+      required: [arxiv_url, max_pages, max_chars]
 
   - name: topic_trends
     description: "Phân tích các chủ đề đang nóng từ nhiều tin tức đã thu thập để hỗ trợ tạo bản tin công nghệ."
