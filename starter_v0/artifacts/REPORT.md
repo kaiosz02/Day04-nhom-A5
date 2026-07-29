@@ -57,9 +57,9 @@ Trợ lý AI Tra cứu Tin tức Công nghệ: tìm tin tức công nghệ/AI/LL
 | news_digest | tổng hợp nhiều kết quả thành bản tin ngắn | Tool mới #4 (bonus) |
 | entity_extractor | trích xuất tên công ty/sản phẩm/nhân vật từ nội dung văn bản | Tool mới #5 (bonus) |
 
-> ⚠️ Cả 5 tool trên **chưa có file `TOOL.md`** (chỉ có `tool.py` + `__init__.py` trong từng thư mục `tools/<tên>/`), trong khi `tools/README.md` yêu cầu mỗi tool phải có cả `TOOL.md` + `tool.py`. Cần Role 2 bổ sung `TOOL.md` cho cả 5 tool trước khi nộp — nếu không sẽ không tính đủ điều kiện "tool mới" theo contract của repo.
+> ✅ Cả 5 tool trên đã có đủ `TOOL.md` + `tool.py`, đúng contract của `tools/README.md`.
 >
-> Nhóm hiện có **5 tool mới** (>3), đủ điều kiện xét bonus theo README — nhưng chỉ khi đã có `TOOL.md` đầy đủ và tool chạy được (không lỗi khi gọi thật).
+> Nhóm hiện có **5 tool mới** (>3), đủ điều kiện xét bonus theo README. Lưu ý: `tech_trending`, `topic_trends`, `source_ranker`, `news_digest`, `entity_extractor` đều xử lý **local** (dữ liệu mẫu/xử lý text nội bộ, không gọi API ngoài thật) — cần nói rõ điều này khi demo để không gây hiểu nhầm là dữ liệu GitHub/tin tức thời gian thực.
 >
 > `send`, `policy`, `papers`, `paper_text` không còn nằm trong scope demo chính (không dùng Telegram); `policy`/`papers`/`paper_text` vẫn còn declaration trong `tools.yaml` (dùng cho case cũ trong `eval_group.json`) nên chưa liệt kê lại ở đây.
 
@@ -162,9 +162,9 @@ not belong here.
 
 File template để trống có chủ đích; nhóm phải tự thiết kế đủ 10 case.
 
-> ⚠️ `data/eval_group.json` hiện có **13 case** (7 single-turn + 6 multi-turn), trong khi README yêu cầu **đúng 10 case** (5 single + 5 multi). 3 case dư là `G11_policy_source_citation`, `G12_policy_data_privacy`, `G13_policy_clarify` — cả 3 đều test tool `policy`. Cần Role 6/nhóm quyết định bớt xuống đúng 10 trước khi nộp (ví dụ giữ G01–G10, bỏ 3 case policy, hoặc thay 3 case policy vào chỗ 3 case khác nếu muốn ưu tiên coverage policy hơn).
+> ✅ Đã sửa đúng **10 case** (5 single + 5 multi) — bộ case dư (`G11-G13`, tool `policy`) đã được rút gọn, thay `G05_search_papers` cũ bằng `G05_policy_data_privacy`.
 >
-> Cũng chưa thấy run nào với `--suite group` trong `runs/` — cột Result dưới đây để trống vì chưa có evidence thật; cần chạy `python run_eval.py --provider openai --version v2 --suite group --eval-cases data/eval_group.json` (hoặc version mới nhất) rồi điền lại.
+> ⚠️ Vẫn chưa thấy run nào với `--suite group` trong `runs/` — cột Result dưới đây để trống vì chưa có evidence thật; cần chạy `python run_eval.py --provider openai --version v2 --suite group --eval-cases data/eval_group.json` (hoặc version mới nhất khi có v3) rồi điền lại.
 
 | Case ID | Kind | Failure Type | What It Tests | Expected Tool/Behavior | Result |
 |---|---|---|---|---|---|
@@ -172,15 +172,12 @@ File template để trống có chủ đích; nhóm phải tự thiết kế đ�
 | G02_openai_timeline | single | wrong_tool | Tra cứu timeline của tài khoản OpenAI | `timeline(screenname="openai", limit=5)` | TODO |
 | G03_social_search_gemini | single | wrong_tool | Tìm bài đăng mạng xã hội theo chủ đề | `social_search(query="Google Gemini", search_type="Latest", limit=10)` | TODO |
 | G04_fetch_article | single | wrong_tool | Đọc nội dung từ URL | `fetch(url="https://openai.com/news")` | TODO |
-| G05_search_papers | single | wrong_tool | Tra cứu paper mới trên arXiv | `papers(query="Retrieval-Augmented Generation", max_results=5, sort_by="submittedDate")` | TODO |
+| G05_policy_data_privacy | single | wrong_tool | Tra cứu chính sách bảo mật dữ liệu | `policy(query="bảo mật dữ liệu AI", policy_area="data_privacy", top_k=3)` | TODO |
 | G06_clarify_then_fetch | multi | missing_info | Thiếu URL, sau khi user bổ sung thì gọi fetch | `fetch(url="https://openai.com/news")` | TODO |
 | G07_clarify_then_timeline | multi | missing_info | Bổ sung tên tài khoản ở lượt hội thoại tiếp theo | `timeline(screenname="openai", limit=3)` | TODO |
 | G08_paper_then_text | multi | wrong_tool | Đọc nội dung paper từ URL arXiv | `paper_text(arxiv_url="https://arxiv.org/abs/2401.00001", max_pages=5, max_chars=10000)` | TODO |
 | G09_change_topic | multi | wrong_arg_value | Đổi query nhưng giữ timeframe | `lookup(query="Robotics", topic="news", timeframe="day", max_results=5)` | TODO |
 | G10_switch_social_to_web | multi | wrong_tool | Chuyển từ social_search sang lookup | `lookup(query="ChatGPT", topic="news", timeframe="week", max_results=5)` | TODO |
-| G11_policy_source_citation *(dư, cần quyết định giữ/bỏ)* | single | wrong_tool | Agent phải chọn policy thay vì lookup | `policy(query="trích dẫn nguồn AI", policy_area="source_citation", top_k=3)` | TODO |
-| G12_policy_data_privacy *(dư)* | single | wrong_tool | Tra cứu chính sách nội bộ về Data Privacy | `policy(query="bảo mật dữ liệu AI", policy_area="data_privacy", top_k=3)` | TODO |
-| G13_policy_clarify *(dư)* | multi | missing_info | Thiếu loại chính sách ở lượt đầu, sau khi bổ sung thì gọi policy | `policy(query="AI Research", policy_area="ai_research", top_k=3)` | TODO |
 
 ## B4. Live chat evidence
 
