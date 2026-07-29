@@ -72,15 +72,6 @@ tools:
       required: [items, template]
 
   # ---------------- Bonus tools ----------------
-  - name: send
-    description: "Sử dụng để GỬI EMAIL, ĐĂNG BÀI hoặc gửi tin nhắn ra bên ngoài. TUYỆT ĐỐI KHÔNG sử dụng công cụ này nếu chưa dùng 'clarify' để hỏi xin phép người dùng. Biến confirmed BẮT BUỘC phải là true khi thực thi."
-    parameters:
-      type: object
-      properties:
-        text: {type: string, default: "", description: "Nội dung văn bản cần gửi"}
-        confirmed: {type: boolean, default: false, description: "BẮT BUỘC phải là true nếu người dùng đã cho phép"}
-      required: [text]
-
   - name: policy
     description: "Sử dụng để tìm kiếm trong tài liệu/hướng dẫn NỘI BỘ của công ty (chính sách, quy định). KHÔNG dùng để tra tin tức internet."
     parameters:
